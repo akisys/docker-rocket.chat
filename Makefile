@@ -11,6 +11,11 @@ build:
 deploy: build
 	docker push $(NAME):$(VERSION)
 
-service-compose: build
-	docker-compose up
+service-up: build
+	docker-compose up mongodb&
+	sleep 10
+	docker-compose up rocket.chat&
+
+service-down:
+	docker-compose down
 
